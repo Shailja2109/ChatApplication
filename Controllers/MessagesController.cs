@@ -10,7 +10,7 @@ using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("API/[controller]")]
     [ApiController]
     public class MessagesController : ControllerBase
     {
@@ -73,7 +73,7 @@ namespace WebApplication2.Controllers
         // POST: api/Messages
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost, Authorize]
-        [Route("/API/Message")]
+        [Route("/API/Messages/Add")]
         public async Task<ActionResult<MessageDTO>> PostMessage(MessageDTO message)
         {
             _context.Messages.Add(new Models.Message()

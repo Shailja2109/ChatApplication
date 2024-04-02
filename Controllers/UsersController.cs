@@ -38,18 +38,12 @@ namespace WebApplication2.Controllers
         public async Task<ActionResult<IEnumerable<User>>> GetUsers()
         {
             var authorizationHeader = HttpContext.Request.Headers["Authorization"];
-
             if (authorizationHeader.Count == 0)
             {
-                return BadRequest("Missing Authorization header");
+                return Unauthorized();
             }
-
-            var token = authorizationHeader.FirstOrDefault().Split(' ').LastOrDefault();
-
-            // Optional: Validate and decode the token using libraries like System.IdentityModel.Tokens.Jwt
-
-            string email = User.FindFirst(ClaimTypes.Email)?.Value;
-
+            _ = authorizationHeader.FirstOrDefault().Split(' ').LastOrDefault();
+            _ = User.FindFirst(ClaimTypes.Email)?.Value;
             return await _context.Users.ToListAsync();
         }
 
@@ -141,7 +135,6 @@ namespace WebApplication2.Controllers
                     return Ok(jwtToken);
                 }
             }
-
             return Unauthorized();
         }
     }
