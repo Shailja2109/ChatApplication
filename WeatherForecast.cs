@@ -1,4 +1,4 @@
-namespace WebApplication2
+namespace ChatApplication2
 {
     public class WeatherForecast
     {
